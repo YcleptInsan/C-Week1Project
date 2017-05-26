@@ -1,8 +1,8 @@
 using Nancy;
 using System.Collections.Generic;
-using CarDealership.Objects;
+using AddressBook.Objects;
 
-namespace Tomogatchi
+namespace AddressBook
 {
   public class HomeModule : NancyModule
   {
@@ -10,12 +10,12 @@ namespace Tomogatchi
     {
       Get["/"] =_=>
       {
-        List<UserTomogatchi> allTomogatchi = userTomogatchi.GetAll();
+        List<Contact> allTomogatchi = userTomogatchi.GetAll();
         return View["views.cshtml"];
       };
       Post["/tomo-name"] =_=>
       {
-        userTomogatchi myTomogatchi = new UserTomogatchi(Request.Form["new-name"]);
+        userContact myTomogatchi = new UserTomogatchi(Request.Form["new-name"]);
         List<UserTomogatchi> allTomogatchi = userTomogatchi.GetAll();
         return View["yourTomo.cshtml", allTomogatchi];
       };

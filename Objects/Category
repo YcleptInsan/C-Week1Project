@@ -1,0 +1,22 @@
+using System.Collections.Generic;
+
+namespace AddressBook
+{
+	public class Category
+	{
+		//VARIABLES
+		private string List<Category> _instances = new List<Category> {};
+		private string _name;
+    private int _id;
+    private List<Contact> _contacts;
+
+//CONSTRUCTOR
+		public Category (string categoryName)
+		{
+			_name = categoryName;
+			_instances.Add(this);
+			_id = instances.Count;
+			_contacts = new List<Contact>{};
+		}
+	}
+}
