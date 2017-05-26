@@ -1,8 +1,8 @@
 using Nancy;
 using System.Collections.Generic;
-using AddressBook.Objects;
 
-namespace AddressBook
+
+namespace AddressBook.Objects
 {
   public class HomeModule : NancyModule
   {
@@ -10,15 +10,29 @@ namespace AddressBook
     {
       Get["/"] =_=>
       {
-        List<Contact> allTomogatchi = userTomogatchi.GetAll();
-        return View["views.cshtml"];
+        return View["index.cshtml"];
       };
-      Post["/tomo-name"] =_=>
-      {
-        userContact myTomogatchi = new UserTomogatchi(Request.Form["new-name"]);
-        List<UserTomogatchi> allTomogatchi = userTomogatchi.GetAll();
-        return View["yourTomo.cshtml", allTomogatchi];
+			Get["/contact"] = _ =>
+			{
+				return View["contact_form.cshtml"];
+			};
+			Get["/newContact"] = _ => {
+        List<Contact> allContacts = Contact.GetAll();
+        return View["index.cshtml", allContacts];
       };
-    }
+			Post["/newContact"] = _ => {
+        Category newCategory = new Category(Request.Form["new-contact"]);
+        List<Category> allCategories = Category.GetAll();
+        return View["index.cshtml", allCategories];
+      };
+			Get["/contact/{id}"]= parameters => {
+			 Dictionary<string, object> model = new Dictionary<string, object>();
+			 Category selectedCategory = Category.Find(parameters.id);
+			 List<Contact> categoryContacts = selectedCategory.GetContacts();
+			 model.Add("category", selectedCategory);
+			 model.Add("tasks", categoryTasks);
+			 return View["category.cshtml", model];
+		 };
+		}
   }
 }
