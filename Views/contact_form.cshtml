@@ -4,10 +4,18 @@
 
 <div class="container text-center">
   <h1 class="header"> Address Book</h1>
-  <form action="/contact" method="post"  id='input-contact'>
-    <label for="new-contact">Add a new contact</label>
-    <input id="new-contact" class="form-control" name="new-contact" type="text">
-    <button type="submit" class="btn btn-info" id="add-task-btn">Submit</button>
+  <form action="/contact" method="Get"  id='input-contact'>
+    <label for="contact-name">Contact Name:</label>
+    <input id="contact-name" class="form-control" name="contact-name" type="text">
+    <button type="submit" class="btn btn-info" id="add-contact-btn">Submit</button>
+
+    <label for="contact-phone-number">Contact Phone Number:</label>
+    <input id="contact-phone-number" class="form-control" phone-number="contact-phone-number" type="text">
+    <button type="submit" class="btn btn-info" id="add-contact-btn">Submit</button>
+
+    <label for="contact-address">Contact Address:</label>
+    <input id="contact-address" class="form-control" address="contact-address" type="text">
+    <button type="submit" class="btn btn-info" id="add-contact-btn">Submit</button>
   </form>
   <br><br>
   <p><a href="/">Home</a></p>

@@ -1,38 +1,62 @@
 using Nancy;
 using System.Collections.Generic;
+using AddressBook.Objects;
 
 
-namespace AddressBook.Objects
+namespace AddressBook
 {
   public class HomeModule : NancyModule
   {
     public HomeModule()
     {
-      Get["/"] =_=>
+      // Gettting a List of All Contacts
+      Get["/contact"] =_=>
       {
-        return View["index.cshtml"];
-      };
-			Get["/contact"] = _ =>
-			{
-				return View["contact_form.cshtml"];
-			};
-			Get["/newContact"] = _ => {
         List<Contact> allContacts = Contact.GetAll();
         return View["index.cshtml", allContacts];
       };
-			Post["/newContact"] = _ => {
-        Category newCategory = new Category(Request.Form["new-contact"]);
-        List<Category> allCategories = Category.GetAll();
-        return View["index.cshtml", allCategories];
+      // Getting view to display form
+      Get["/contact/form"] = _ =>
+      {
+        return View["contact_form.cshtml"];
+      }
+			Get["/contact/new"] = _ =>
+			{
+        Contact newContact = new Contact();
+        newContact.Get(Request.Form["contact-name"], Request.Form["contact-phone-number"], Request.Form["contact-address"]);
+        return View["index.cshtml", allContacts];
+				return View["contact_form.cshtml"];
+			};
+			Post["/contact"] = _ => {
+        List<Contact> allContacts = new Contact();
+        allContacts.
       };
-			Get["/contact/{id}"]= parameters => {
-			 Dictionary<string, object> model = new Dictionary<string, object>();
-			 Category selectedCategory = Category.Find(parameters.id);
-			 List<Contact> categoryContacts = selectedCategory.GetContacts();
-			 model.Add("category", selectedCategory);
-			 model.Add("tasks", categoryTasks);
-			 return View["category.cshtml", model];
-		 };
+		// 	Post["/"] = _ => {
+		// 		Dictionary<string, object> model = new Dictionary<string, object>();
+ 	// 		 	Category selectedCategory = Category.Find(parameters.id);
+ 	// 		 	List<Contact> categoryContacts = selectedCategory.GetContacts();
+ 	// 		 	model.Add("category", selectedCategory);
+ 	// 		 	model.Add("contacts", categoryContacts);
+ 	// 		 	return View["index.cshtml", model];
+    //   };
+		// // 	Get["/contact/{id}"]= parameters => {
+		// 	 Dictionary<string, object> model = new Dictionary<string, object>();
+		// 	 Category selectedCategory = Category.Find(parameters.id);
+		// 	 List<Contact> categoryContacts = selectedCategory.GetContacts();
+		// 	 model.Add("category", selectedCategory);
+		// 	 model.Add("contacts", categoryContacts);
+		// 	 return View["category.cshtml", model];
+		//  };
+		// Post["/contact/update"] = _ => {
+    //     Dictionary<string, object> model = new Dictionary<string, object>();
+    //     Category selectedCategory = Category.Find(Request.Form["category-id"]);
+    //     int toDelete = Request.Form["contact-id"];
+    //     selectedCategory.DeleteTask(toDelete);
+    //     List<Task> categoryInforamtion = selectedCategory.GetContacts();
+    //     model.Add("contacts", categoryTasks);
+    //     model.Add("category", selectedCategory);
+    //     return View["category.cshtml", model];
+    //   };
 		}
   }
 }

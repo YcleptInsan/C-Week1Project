@@ -5,6 +5,21 @@
 <div class = "container text-center">
   <h1>Address Book </h1>
 	<h3>Your Contacts: </h3>
-  <!-- <h3><a href='/contacts'>View Contacts</a></h3> -->
-  <h3><a href="/contact">Add a new Contact</a></h3>
+	@foreach(var contact in @Model["contacts"])
+  {
+    @if(@contact.GetExistence())
+    {
+      <h5>@contact.GetDescription()</h5>
+			<h5>@contact.GetAddress()</h5>
+			<h5>@contact.GetPhoneNumber()</h5>
+      <form action="/" method="post">
+        <input id='contact-id' name='contact-id' type='hidden' value='@contact.GetId()'>
+        <input id='category-id' name='category-id' type='hidden' value='@Model["category"].GetId()'>
+        <button type="submit" class="btn btn-danger">Delete task #@contact.GetId()</button>
+      </form>
+    }
+  }
+	<h3><a href="/contact">Add a new Contact</a></h3>
+
+
 </div>
