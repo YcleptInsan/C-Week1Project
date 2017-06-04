@@ -1,0 +1,19 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+
+<h1>You created a new contact</h1>
+
+<ul>
+  <li>@Model.GetFirst() @Model.GetLast() has been added to your contact list</li>
+  <ul>
+    <li>First Name: @Model.GetName()</li>
+    <li>Phone Number: @Model.GetNumber()</li>
+    <li>Home Adress: @Model.GetAddress()</li>
+
+  </ul>
+</ul>
+
+<p><a href="/contact/add">Click here</a> to add another address</p>
+<p><a href="/">Click here</a> to view all addresses</p>

@@ -1,25 +1,22 @@
 @{
-	Layout="Shared/_Layout.cshtml";
+	Layout = "Shared/_Layout.cshtml";
 }
 
 <div class = "container text-center">
   <h1>Address Book </h1>
 	<h3>Your Contacts: </h3>
-	@foreach(var contact in @Model["contacts"])
+	@foreach(var contact in @Model)
   {
     @if(@contact.GetExistence())
     {
-      <h5>@contact.GetDescription()</h5>
-			<h5>@contact.GetAddress()</h5>
-			<h5>@contact.GetPhoneNumber()</h5>
-      <form action="/" method="post">
+      <h5>@contact.GetName()</h5>
+      <form action="/contact" method="post">
         <input id='contact-id' name='contact-id' type='hidden' value='@contact.GetId()'>
-        <input id='category-id' name='category-id' type='hidden' value='@Model["category"].GetId()'>
-        <button type="submit" class="btn btn-danger">Delete task #@contact.GetId()</button>
+        <button type="submit" class="btn btn-danger">Delete Contact #@contact.GetId()</button>
       </form>
     }
   }
-	<h3><a href="/contact">Add a new Contact</a></h3>
+	<h3><a href="/contact/form" id ="new-contact">Add a new Contact</a></h3>
 
 
 </div>

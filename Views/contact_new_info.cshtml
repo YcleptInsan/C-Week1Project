@@ -1,0 +1,12 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+<h1 id="confirm">Address Book</h1>
+<h3>Your new contact:</h3>
+<h2><span class="names" id="newContact">@Model.GetName()</span></h2>
+<h2>Phone Number: @Model.GetPhoneNumber()</h2>
+<h2>Address: @Model.GetAddress()</h2>
+
+<p><a href="/contact/form">Click here</a> to add another address</p>
+<p><a href="/" class="home">Return Home</a></p>

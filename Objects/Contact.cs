@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 
 
-namespace AddressBook.Objects
+
+namespace AddressBook
 {
 	public class Contact
 	{
@@ -10,44 +11,37 @@ namespace AddressBook.Objects
 		private string _address;
 		private string _phoneNumber;
 		private int _id;
+		private bool  _doesExist;
 		private static List<Contact> _instances = new List<Contact> {};
 		//CONSTRUCTOR
-		public Contact(string newDescription, string newAddress, string newPhoneNumber)
+		public Contact(string newName, string newAddress, string newPhoneNumber)
 		{
 			_name = newName;
 			_address = newAddress;
 			_phoneNumber = newPhoneNumber;
 			_doesExist = true;
+			
 		}
 		//Getters and Setters
-		public  string GetDescription()
+		public  string GetName()
 		{
-			return _description;
+			return _name;
 		}
 		public int GetId()
 		{
 			return _id;
 		}
-		public void SetDescription(string Description)
-		{
-			_description = Description;
-		}
+
 		public string GetAddress()
 		{
 			return _address;
 		}
-		public void SetAddress(string Address)
-		{
-			_address = Address;
-		}
+
 		public string GetPhoneNumber()
 		{
 			return _phoneNumber;
 		}
-		public void SetPhoneNumber(string PhoneNumber)
-		{
-			_phoneNumber = PhoneNumber;
-		}
+
 		public static List<Contact> GetAll()
 		{
 			return _instances;
@@ -58,7 +52,7 @@ namespace AddressBook.Objects
 		}
 		public static Contact Find(int searchId)
 		{
-			return _instances[searchId];
+			return _instances[searchId -1];
 		}
 		public bool GetExistence()
 		{
