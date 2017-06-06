@@ -14,13 +14,15 @@ namespace AddressBook
 		private bool  _doesExist;
 		private static List<Contact> _instances = new List<Contact> {};
 		//CONSTRUCTOR
-		public Contact(string newName, string newAddress, string newPhoneNumber)
+		public Contact(string name, string address, string phoneNumber)
 		{
-			_name = newName;
-			_address = newAddress;
-			_phoneNumber = newPhoneNumber;
+			_name = name;
+			_address = address;
+			_phoneNumber = phoneNumber;
 			_doesExist = true;
-			
+			_id = _instances.Count;
+      _instances.Add(this);
+
 		}
 		//Getters and Setters
 		public  string GetName()
@@ -52,7 +54,7 @@ namespace AddressBook
 		}
 		public static Contact Find(int searchId)
 		{
-			return _instances[searchId -1];
+			return _instances[searchId];
 		}
 		public bool GetExistence()
 		{

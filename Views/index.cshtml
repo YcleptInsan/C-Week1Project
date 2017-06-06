@@ -3,20 +3,17 @@
 }
 
 <div class = "container text-center">
-  <h1>Address Book </h1>
-	<h3>Your Contacts: </h3>
-	@foreach(var contact in @Model)
+	<ul>
+  @foreach(var person in Model)
   {
-    @if(@contact.GetExistence())
-    {
-      <h5>@contact.GetName()</h5>
-      <form action="/contact" method="post">
-        <input id='contact-id' name='contact-id' type='hidden' value='@contact.GetId()'>
-        <button type="submit" class="btn btn-danger">Delete Contact #@contact.GetId()</button>
-      </form>
-    }
+      <li><a href="contact/@person.GetId()">@person.GetName()</a></li>
   }
-	<h3><a href="/contact/form" id ="new-contact">Add a new Contact</a></h3>
+	</ul>
 
+	<p><a href="/contact/form">click here</a> to add a contact </p>
+
+	<form action="/contacts/clear" method="post">
+  	<button type="submit">Clear all contacts</button>
+	</form>
 
 </div>
