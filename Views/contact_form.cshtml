@@ -4,17 +4,18 @@
 
 <div class="container text-center">
   <h1 class="header"> Address Book</h1>
-  <form action="/contact/form" method="post"  id='input-contact'>
+  <form action="/contact/new/info" method="post"  id='input-contact'>
     <label for="contact-name">Contact First Name:</label>
     <input id="contact-name" class="form-control" name="contact-name" type="text">
 
 
     <label for="contact-phone-number">Contact Phone Number:</label>
-    <input id="contact-phone-number" class="form-control" phone-number="contact-phone-number" type="text">
+    <input id="contact-phone-number" class="form-control" name="contact-phone-number" type="text">
 
 
     <label for="contact-address">Contact Address:</label>
-    <input id="contact-address" class="form-control" address ="contact-address" type="text">
+    <input id="contact-address" class="form-control" name ="contact-address" type="text">
+
     <button type="submit" name="button">Submit</button>
   </form>
   <br>

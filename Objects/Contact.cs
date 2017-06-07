@@ -21,8 +21,7 @@ namespace AddressBook
 			_phoneNumber = phoneNumber;
 			_doesExist = true;
 			_id = _instances.Count;
-      _instances.Add(this);
-
+    
 		}
 		//Getters and Setters
 		public  string GetName()
